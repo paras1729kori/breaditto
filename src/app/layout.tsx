@@ -25,6 +25,8 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen pt-12 bg-slate-50 antialiased">
+        {/* fix for: Type 'Promise<Element>' is missing the following properties from type 'ReactElement<any, any>': type, props, keyts(2786) */}
+        {/* @ts-expect-error Server Component */}
         <Navbar />
         <div className="container max-w-7xl mx-auto h-full pt-12">
           {children}
