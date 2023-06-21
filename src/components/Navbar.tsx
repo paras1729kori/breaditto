@@ -1,12 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Icons } from "./Icons";
 import { buttonVariants } from "./ui/Button";
 import { getAuthSession } from "@/lib/auth";
+import UserAccountNav from "./UserAccountNav";
 
 const Navbar = async () => {
   const session = await getAuthSession();
-  const accountImg = session?.user?.image as string;
 
   return (
     <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[10] py-2">
@@ -22,14 +21,8 @@ const Navbar = async () => {
         {/* search bar */}
 
         {/* authentication */}
-        {session ? (
-          <Image
-            src={accountImg}
-            alt="user.png"
-            width={50}
-            height={50}
-            className="rounded-full"
-          />
+        {session?.user ? (
+          <UserAccountNav user={session?.user} />
         ) : (
           <Link href="/sign-in" className={buttonVariants()}>
             Sign In
