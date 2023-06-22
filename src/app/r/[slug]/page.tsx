@@ -1,4 +1,5 @@
 import MiniCreatePost from "@/components/MiniCreatePost";
+import PostFeed from "@/components/PostFeed";
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -39,7 +40,8 @@ const page = async ({ params }: pageProps) => {
       </h1>
       <MiniCreatePost session={session} />
 
-      {/* TODO: Show posts in your feed */}
+      {/* TODO: Show posts in your feed with infinite scrolling */}
+      <PostFeed initialPosts={subReddit.posts} subRedditName={subReddit.name} />
     </>
   );
 };
