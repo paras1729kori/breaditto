@@ -81,7 +81,7 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="flex justify-end gap-4">
+        <div className="flex justify-center sm:justify-end gap-4">
           <Button variant="subtle" onClick={() => router.back()}>
             Cancel
           </Button>
@@ -90,7 +90,7 @@ const Page = () => {
             disabled={input.length === 0}
             onClick={() => createCommunity()}
           >
-            Create Community
+            Create
           </Button>
         </div>
       </div>

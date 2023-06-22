@@ -9,6 +9,6 @@ export const SubRedditSubscriptionValidator = z.object({
 });
 
 export type CreateSubRedditPayload = z.infer<typeof SubRedditValidator>;
-export type CreateSubRedditSubscriptionPayload = z.infer<
+export type SubscribeToSubredditPayload = z.infer<
   typeof SubRedditSubscriptionValidator
 >;
