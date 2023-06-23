@@ -26,6 +26,9 @@ const page = async ({ params }: pageProps) => {
           comments: true,
           subReddit: true,
         },
+        orderBy: {
+          createdAt: "desc",
+        },
 
         take: INFINITE_SCROLLING_PAGINATION_RESULTS,
       },
@@ -35,8 +38,8 @@ const page = async ({ params }: pageProps) => {
 
   return (
     <>
-      <h1 className="font-bold text-3xl md:text-4xl h-14">
-        r/{subReddit.name}
+      <h1 className="text-3xl md:text-4xl h-14">
+        r/<span className="font-bold">{subReddit.name}</span>
       </h1>
       <MiniCreatePost session={session} />
 

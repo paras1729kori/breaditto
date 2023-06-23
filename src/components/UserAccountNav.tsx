@@ -30,7 +30,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
         />
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="bg-light" align="end">
+      <DropdownMenuContent align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
             {user.name && <p className="font-medium">{user.name}</p>}

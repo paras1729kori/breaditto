@@ -10,7 +10,7 @@ import { toast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
-import { uploadFiles } from "@/lib/uploadthing";
+// import { uploadFiles } from "@/lib/uploadthing";
 
 interface EditorProps {
   subRedditId: string;
@@ -47,7 +47,7 @@ const Editor: FC<EditorProps> = ({ subRedditId }) => {
     const LinkTool = (await import("@editorjs/link")).default;
     const Code = (await import("@editorjs/code")).default;
     const InlineCode = (await import("@editorjs/inline-code")).default;
-    const ImageTool = (await import("@editorjs/image")).default;
+    // const ImageTool = (await import("@editorjs/image")).default;
 
     if (!ref.current) {
       const editor = new EditorJS({
@@ -66,22 +66,22 @@ const Editor: FC<EditorProps> = ({ subRedditId }) => {
               endpoint: "/api/link",
             },
           },
-          image: {
-            class: ImageTool,
-            config: {
-              uploader: {
-                async uploadByFile(file: File) {
-                  const [res] = await uploadFiles([file], "imageUploader");
-                  return {
-                    sucess: 1,
-                    file: {
-                      url: res.fileUrl,
-                    },
-                  };
-                },
-              },
-            },
-          },
+          // image: {
+          //   class: ImageTool,
+          //   config: {
+          //     uploader: {
+          //       async uploadByFile(file: File) {
+          //         const [res] = await uploadFiles([file], "imageUploader");
+          //         return {
+          //           sucess: 1,
+          //           file: {
+          //             url: res.fileUrl,
+          //           },
+          //         };
+          //       },
+          //     },
+          //   },
+          // },
           list: List,
           code: Code,
           inlineCode: InlineCode,

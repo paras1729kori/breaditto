@@ -35,12 +35,12 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({ session }) => {
           placeholder="Create post"
         />
         <div className="flex justify-end">
-          <Button
+          {/* <Button
             variant="ghost"
             onClick={() => router.push(pathName + "/submit")}
           >
             <ImageIcon className="text-zinc-600" />
-          </Button>
+          </Button> */}
 
           <Button
             variant="ghost"
