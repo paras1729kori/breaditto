@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { redis } from "@/lib/redis";
 import { CachedPost } from "@/types/redis";
-import { Post, User, Vote } from "@prisma/client";
+import { Post, SubReddit, User, Vote } from "@prisma/client";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -28,7 +28,9 @@ const page = async ({ params }: pageProps) => {
     `post:${params.postId}`
   )) as CachedPost;
 
-  let post: (Post & { votes: Vote[]; author: User }) | null = null;
+  let post:
+    | (Post & { votes: Vote[]; author: User; subReddit: SubReddit })
+    | null = null;
 
   if (!cachedPost) {
     post = await db.post.findFirst({
@@ -38,6 +40,7 @@ const page = async ({ params }: pageProps) => {
       include: {
         votes: true,
         author: true,
+        subReddit: true,
       },
     });
   }
@@ -51,6 +54,7 @@ const page = async ({ params }: pageProps) => {
           {/* @ts-expect-error server component */}
           <PostVoteServer
             postId={post?.id ?? cachedPost.id}
+            subRedditName={post?.subReddit.name ?? cachedPost.subRedditName}
             getData={async () => {
               return await db.post.findUnique({
                 where: {

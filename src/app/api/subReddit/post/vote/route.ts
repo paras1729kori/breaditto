@@ -40,6 +40,7 @@ export async function PATCH(req: Request) {
       include: {
         author: true,
         votes: true,
+        subReddit: true,
       },
     });
 
@@ -85,6 +86,7 @@ export async function PATCH(req: Request) {
       if (votesAmt >= CACHE_AFTER_UPVOTES) {
         const cachedPayload: CachedPost = {
           authorUsername: post.author.username ?? "",
+          subRedditName: post.subReddit.name,
           content: JSON.stringify(post.content),
           id: post.id,
           title: post.title,
@@ -117,6 +119,7 @@ export async function PATCH(req: Request) {
     if (votesAmt >= CACHE_AFTER_UPVOTES) {
       const cachedPayload: CachedPost = {
         authorUsername: post.author.username ?? "",
+        subRedditName: post.subReddit.name,
         content: JSON.stringify(post.content),
         id: post.id,
         title: post.title,

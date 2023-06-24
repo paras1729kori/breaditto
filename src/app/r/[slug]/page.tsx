@@ -29,7 +29,6 @@ const page = async ({ params }: pageProps) => {
         orderBy: {
           createdAt: "desc",
         },
-
         take: INFINITE_SCROLLING_PAGINATION_RESULTS,
       },
     },
@@ -43,7 +42,6 @@ const page = async ({ params }: pageProps) => {
       </h1>
       <MiniCreatePost session={session} />
 
-      {/* TODO: Show posts in your feed with infinite scrolling */}
       <PostFeed initialPosts={subReddit.posts} subRedditName={subReddit.name} />
     </>
   );

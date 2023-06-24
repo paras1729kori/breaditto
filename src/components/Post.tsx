@@ -30,9 +30,9 @@ const Post: FC<PostProps> = ({
   return (
     <div className="rounded-md bg-white shadow">
       <div className="px-6 py-4 flex justify-between">
-        {/* TODO: Post Votes */}
         <PostVoteClient
           postId={post.id}
+          subRedditName={subRedditName}
           initialVotesAmt={votesAmt}
           initialVote={currentVote?.type}
         />
@@ -50,7 +50,7 @@ const Post: FC<PostProps> = ({
                 <span className="px-1">•</span>
               </>
             ) : null}
-            <span>Posted by u/{post.author.name}</span>{" "}
+            <span>Posted by u/{post.author.username}</span>{" "}
             {formatTimeToNow(new Date(post.createdAt))}
           </div>
           <a href={`/r/${subRedditName}/post/${post.id}`}>

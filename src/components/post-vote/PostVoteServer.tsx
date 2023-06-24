@@ -5,6 +5,7 @@ import PostVoteClient from "./PostVoteClient";
 
 interface PostVoteServerProps {
   postId: string;
+  subRedditName: string;
   initialVotesAmt?: number;
   initialVote?: VoteType | null;
   getData?: () => Promise<(Post & { votes: Vote[] }) | null>;
@@ -12,6 +13,7 @@ interface PostVoteServerProps {
 
 const PostVoteServer = async ({
   postId,
+  subRedditName,
   initialVotesAmt,
   initialVote,
   getData,
@@ -43,6 +45,7 @@ const PostVoteServer = async ({
   return (
     <PostVoteClient
       postId={postId}
+      subRedditName={subRedditName}
       initialVotesAmt={_votesAmt}
       initialVote={_currentVotes}
     />

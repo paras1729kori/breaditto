@@ -11,22 +11,26 @@ import { useMutation } from "@tanstack/react-query";
 import { PostVoteRequest } from "@/lib/validators/vote";
 import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/use-toast";
+import { usePathname } from "next/navigation";
 
 interface PostVoteClientProps {
   postId: string;
   initialVotesAmt: number;
   initialVote?: VoteType | null;
+  subRedditName: string;
 }
 
 const PostVoteClient: FC<PostVoteClientProps> = ({
   postId,
   initialVotesAmt,
   initialVote,
+  subRedditName,
 }) => {
   const { loginToast } = useCustomToast();
   const [votesAmt, setVotesAmt] = useState<number>(initialVotesAmt);
   const [currentVote, setCurrentVote] = useState(initialVote);
   const prevVote = usePrevious(currentVote);
+  const pathName = usePathname();
 
   useEffect(() => {
     setCurrentVote(initialVote);
@@ -75,7 +79,12 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
   });
 
   return (
-    <div className="flex sm:flex-col gap-4 sm:gap-6 pr-6 sm:w-20 pb-4sm:pb-0">
+    <div
+      className={cn("flex flex-col gap-4 sm:gap-0 pr-6 sm:w-20 pb-4 sm:pb-0", {
+        "flex-row sm:flex-col":
+          pathName === `/r/${subRedditName}/post/${postId}`,
+      })}
+    >
       <Button
         size="sm"
         variant="ghost"

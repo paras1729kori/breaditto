@@ -6,7 +6,7 @@ import { FC } from "react";
 import UserAvatar from "./UserAvatar";
 import { Input } from "./ui/Input";
 import { Button } from "./ui/Button";
-import { ImageIcon, Link2 } from "lucide-react";
+import { Link2 } from "lucide-react";
 
 interface MiniCreatePostProps {
   session: Session | null;
@@ -17,7 +17,7 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({ session }) => {
   const pathName = usePathname();
   return (
     <li className="list-none overflow-hidden rounded-md bg-white shadow">
-      <div className="h-full px-6 py-4 flex flex-col sm:flex-row justify-between sm:gap-6 gap-2">
+      <div className="h-full px-6 py-4 flex sm:flex-row justify-between sm:gap-6 gap-2">
         <div className="relative">
           <UserAvatar
             user={{
@@ -25,8 +25,6 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({ session }) => {
               image: session?.user.image || null,
             }}
           />
-
-          <span className="absolute bottom-0 left-0 rounded-full h-3 w-3 bg-green-500 outline outline-2 outline-white" />
         </div>
 
         <Input
@@ -44,6 +42,7 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({ session }) => {
 
           <Button
             variant="ghost"
+            className="hidden sm:block"
             onClick={() => router.push(pathName + "/submit")}
           >
             <Link2 className="text-zinc-600" />

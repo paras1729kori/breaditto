@@ -141,7 +141,6 @@ const Editor: FC<EditorProps> = ({ subRedditId }) => {
         title,
         content,
       };
-      console.log(payload);
       const { data } = await axios.post("/api/subReddit/post/create", payload);
       return data as string;
     },

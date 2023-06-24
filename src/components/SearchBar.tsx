@@ -40,7 +40,6 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
   }, []);
 
   const {
-    isFetching,
     data: queryResults,
     refetch,
     isFetched,
